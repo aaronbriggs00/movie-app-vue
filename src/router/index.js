@@ -1,6 +1,15 @@
 import Vue from 'vue'
+import axios from "axios";
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Signup from '../views/Signup.vue'
+import Login from '../views/Login.vue'
+import Logout from '../views/Logout.vue'
+
+var jwt = localStorage.getItem("jwt");
+if (jwt) {
+  axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
+}
 
 Vue.use(VueRouter)
 
@@ -9,6 +18,21 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/users/new',
+    name: 'Signup',
+    component: Signup
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
   },
   {
     path: '/about',
