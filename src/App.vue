@@ -2,11 +2,32 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/movies">Movies</router-link> |
+      <span v-if="isLoggedIn()">
+        <router-link to="/logout">Logout</router-link>
+      </span>
+      <span v-else>
+        <router-link to="/users/new">Signup</router-link> |
+        <router-link to="/login">Login</router-link>
+      </span>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data: function() {
+    return {};
+  },
+  methods: {
+    isLoggedIn: function() {
+      return localStorage.getItem("jwt");
+    },
+  },
+};
+</script>
 
 <style>
 #app {
